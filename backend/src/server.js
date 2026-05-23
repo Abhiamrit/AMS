@@ -16,6 +16,7 @@ const notificationsRoutes = require("./routes/notifications");
 const routingRoutes = require("./routes/routing");
 
 const app = express();
+app.set("trust proxy", 1);
 const PORT = process.env.PORT || 5000;
 const SESSION_MAX_AGE = parseInt(process.env.SESSION_MAX_AGE_MS) || 1800000;
 
@@ -56,8 +57,8 @@ app.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
+      secure: true,
+      sameSite: "none",
       maxAge: SESSION_MAX_AGE,
     },
     name: "ams_sid",
