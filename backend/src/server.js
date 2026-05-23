@@ -22,11 +22,11 @@ const SESSION_MAX_AGE = parseInt(process.env.SESSION_MAX_AGE_MS) || 1800000;
 // Initialize DB on startup
 // Initialize DB on startup and auto-seed if empty
 const db = getDb();
-const userCount = db.prepare('SELECT COUNT(*) as c FROM users').get();
+const userCount = db.prepare("SELECT COUNT(*) as c FROM users").get();
 if (userCount.c === 0) {
-  console.log('Database is empty — auto-seeding...');
-  require('./utils/seed');
-  console.log('Auto-seed complete.');
+  console.log("Database is empty — auto-seeding...");
+  require("./utils/seed");
+  console.log("Auto-seed complete.");
 }
 
 // Security headers
@@ -56,8 +56,8 @@ app.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
+      secure: true,
+      sameSite: "none",
       maxAge: SESSION_MAX_AGE,
     },
     name: "ams_sid",
