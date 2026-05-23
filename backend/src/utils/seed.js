@@ -137,7 +137,6 @@ async function seed() {
   console.log("  staff2       / Staff@1234  → Civil & Structural Engineering");
   console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
-  process.exit(0);
 }
 
 seed().catch((err) => {
