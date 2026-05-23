@@ -81,6 +81,17 @@ app.use((err, req, res, next) => {
 const path = require("path");
 const frontendBuild = path.join(__dirname, "..", "..", "frontend", "build");
 app.use(express.static(frontendBuild));
+
+// Temporary seed route - remove after seeding
+app.get("/init-seed", async (req, res) => {
+  try {
+    require("./utils/seed");
+    res.json({ message: "Seeded successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(frontendBuild, "index.html"));
 });
