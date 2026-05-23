@@ -87,6 +87,7 @@ The app will open automatically at `http://localhost:3000`
 
 ## Project Structure
 
+```
 AMS/
 ├── backend/
 │   ├── src/
@@ -106,6 +107,7 @@ AMS/
 │   │   └── App.js           # React Router configuration
 │   └── package.json
 └── README.md
+```
 
 ## API Overview
 
