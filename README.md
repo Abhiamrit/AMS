@@ -43,6 +43,9 @@ AMS replaces manual, paper-based processes with a centralized role-based digital
 
 ## Getting Started
 
+## Live Demo
+https://assignment-management-system-c9az.onrender.com
+
 ### Prerequisites
 - Node.js v18+ — download from [nodejs.org](https://nodejs.org)
 - That's it — no database installation required
