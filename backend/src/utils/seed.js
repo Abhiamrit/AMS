@@ -14,7 +14,6 @@ async function seed() {
     .get("admin");
   if (existingAdmin) {
     console.log("ℹ️  Seed data already present. Skipping.");
-    process.exit(0);
   }
 
   // ── STEP 1: Create Admin first (no section) ───────────────────────────
