@@ -20,7 +20,14 @@ const PORT = process.env.PORT || 5000;
 const SESSION_MAX_AGE = parseInt(process.env.SESSION_MAX_AGE_MS) || 1800000;
 
 // Initialize DB on startup
-getDb();
+// Initialize DB on startup and auto-seed if empty
+const db = getDb();
+const userCount = db.prepare('SELECT COUNT(*) as c FROM users').get();
+if (userCount.c === 0) {
+  console.log('Database is empty — auto-seeding...');
+  require('./utils/seed');
+  console.log('Auto-seed complete.');
+}
 
 // Security headers
 app.use(helmet({ crossOriginResourcePolicy: false }));
@@ -81,16 +88,6 @@ app.use((err, req, res, next) => {
 const path = require("path");
 const frontendBuild = path.join(__dirname, "..", "..", "frontend", "build");
 app.use(express.static(frontendBuild));
-
-// Temporary seed route - remove after seeding
-app.get("/init-seed", async (req, res) => {
-  try {
-    require("./utils/seed");
-    res.json({ message: "Seeded successfully" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(frontendBuild, "index.html"));
