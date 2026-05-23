@@ -31,7 +31,12 @@ if (userCount.c === 0) {
 }
 
 // Security headers
-app.use(helmet({ crossOriginResourcePolicy: false }));
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+    contentSecurityPolicy: false,
+  }),
+);
 
 // CORS
 app.use(
